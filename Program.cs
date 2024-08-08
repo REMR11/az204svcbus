@@ -1,7 +1,6 @@
 ﻿using System.Runtime.Intrinsics.Arm;
 using Azure.Messaging.ServiceBus;
 
-
 string connectionString = "$StringConnection";
 string queueName = "az204-queue";
 
@@ -43,3 +42,49 @@ finally{
 Console.WriteLine("Follow the directions in the exercise to review the results in the Azure portal.");
 Console.WriteLine("Press any key to continue");
 Console.ReadKey();
+
+ServiceBusProcessor processor;
+client = new ServiceBusClient(connectionString);
+
+// create a processor that we can use to process the messages
+processor = client.CreateProcessor(queueName, new ServiceBusProcessorOptions());
+try
+{
+    // add handler to process messages
+    processor.ProcessMessageAsync += MessageHandler;
+
+    // add handler to process any errors
+    processor.ProcessErrorAsync += ErrorHandler;
+    // start processing
+    await processor.StartProcessingAsync();
+    
+    Console.WriteLine("Wait for a minute and then press any key to end the processing");
+    Console.ReadKey();
+
+    // stop processin
+    System.Console.WriteLine("\nStopping the receiver...");
+    await processor.StopProcessingAsync();
+    System.Console.WriteLine("stopped receiving messages");
+}
+finally
+{
+    // Calling DisposeAsync on cliente types is required to ensure that nerwork
+    // resources and the unmanaged objects are properly cleaned up.
+    await processor.DisposeAsync();
+    await client.DisposeAsync();
+}
+
+// handle received messages
+async Task MessageHandler(ProcessMessageEventArgs args){
+    string body = args.Message.Body.ToString();
+    System.Console.WriteLine($"Received: {body}");
+
+    // complete the message. messges is deleted from the queue.
+    await args.CompleteMessageAsync(args.Message);
+}
+
+// handler any errors when receiving messages
+Task ErrorHandler(ProcessErrorEventArgs args){
+    System.Console.WriteLine(args.Exception.ToString());
+    return Task.CompletedTask;
+}

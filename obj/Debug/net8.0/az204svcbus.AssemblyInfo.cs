@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("az204svcbus")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0e845899a2613c976c10a995d8e707895eb5592")]
 [assembly: System.Reflection.AssemblyProductAttribute("az204svcbus")]
 [assembly: System.Reflection.AssemblyTitleAttribute("az204svcbus")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

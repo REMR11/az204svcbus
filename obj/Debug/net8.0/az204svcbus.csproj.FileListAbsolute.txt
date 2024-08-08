@@ -21,3 +21,4 @@ D:\bootcamFacilito\az204svcbus\obj\Debug\net8.0\refint\az204svcbus.dll
 D:\bootcamFacilito\az204svcbus\obj\Debug\net8.0\az204svcbus.pdb
 D:\bootcamFacilito\az204svcbus\obj\Debug\net8.0\az204svcbus.genruntimeconfig.cache
 D:\bootcamFacilito\az204svcbus\obj\Debug\net8.0\ref\az204svcbus.dll
+D:\bootcamFacilito\az204svcbus\obj\Debug\net8.0\az204svcbus.sourcelink.json
